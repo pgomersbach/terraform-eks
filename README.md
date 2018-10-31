@@ -38,7 +38,7 @@ kubectl get deployments
 kubectl get pods
 kubectl get services
 ```
-### fill database
+### Fill database
 ```
 POD=`kubectl get pods -l app=postgres | grep Running | grep 1/1 | awk '{print $1}'`
 kubectl exec -it $POD bash
@@ -55,10 +55,10 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
-### kill database pod and check new provicioned pod
+### Kill database pod and check new provicioned pod
 ```
-kubectl delete pod ${POD}
 POD=`kubectl get pods -l app=postgres | grep Running | grep 1/1 | awk '{print $1}'`
+kubectl delete pod ${POD}
 kubectl exec -it $POD bash
 su postgres
 psql pxdemo
@@ -68,11 +68,6 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
-### kill node and check new provisioned node
-```
-NODE=`kubectl get pods -o wide | grep postgres | awk '{print $7}'`
-kubectl get pods -o wide --all-namespaces
-```
 
-### destroy cluster
+### Destroy cluster
 terraform destroy
