@@ -76,7 +76,14 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
+### Install jenkins
+```
+sudo usermod -aG docker $USER
+exec sg docker newgrp `id -gn`
+docker build -t ybushnev/my-jenkins-image:1.0 jenkins/
+```
 
 ### Destroy cluster
 ```
 terraform destroy # and wait about ten minutes
+```
