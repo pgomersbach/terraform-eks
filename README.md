@@ -31,7 +31,7 @@ kubectl apply -f config_map_aws_auth.yaml
 kubectl get nodes --watch
 kubectl get pods -n kube-system
 ```
-### deply postgres on kubernetes
+### Deploy postgres on kubernetes
 ```
 kubectl create -f postgres/postgres-configmap.yaml
 kubectl create -f postgres/postgres-storage.yaml
@@ -61,7 +61,7 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
-### Kill database pod and check new provicioned pod
+### Kill database pod and check new provisioned pod
 ```
 POD=`kubectl get pods -l app=postgres | grep Running | grep 1/1 | awk '{print $1}'`
 kubectl delete pod ${POD}
