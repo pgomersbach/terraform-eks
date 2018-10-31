@@ -1,5 +1,7 @@
 # Terraform EKS test deployment
-This procedure installs an AWS EKS cluster, deploy portsgreql and performs a number of tests. Warning: the cost is about $ 0.40 per hour.  
+This procedure installs an AWS EKS cluster, deploy portsgreql and performs a number of tests.  
+
+**Warning: the cost is about $ 0.40 per hour.**
 ## Get started
 ### Prerequisites
 - AWS account  
