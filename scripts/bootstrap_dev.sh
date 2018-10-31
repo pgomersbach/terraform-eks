@@ -26,6 +26,6 @@ curl -s  https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linu
 curl -s  https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64 -o /usr/local/bin/aws-iam-authenticator && chmod +x /usr/local/bin/aws-iam-authenticator
 
 #### clone repo
-su -c "git clone https://github.com/pgomersbach/terraform-eks.git terraform-eks" ubuntu
+su -c "git clone https://github.com/pgomersbach/terraform-eks.git /home/ubuntu/terraform-eks" ubuntu
 
 echo "Please export AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_DEFAULT_REGION for example in ~/.bash_profile"
