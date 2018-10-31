@@ -8,7 +8,7 @@ fi
 #### install packages
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y unzip apt-transport-https git wget curl python-pip
+apt-get install -y unzip apt-transport-https git wget curl python-pip docker.io
 
 #### install kubectl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
