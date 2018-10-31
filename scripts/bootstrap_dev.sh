@@ -1,4 +1,10 @@
 #!/bin/bash
+#### check permissions
+if [ "$(id -u)" != "0" ]; then
+  echo "This script must be run as root." >&2
+  exit 1
+fi
+
 #### install packages
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
@@ -19,14 +25,7 @@ curl -s  https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linu
 #### install aws-iam-authenticator
 curl -s  https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64 -o /usr/local/bin/aws-iam-authenticator && chmod +x /usr/local/bin/aws-iam-authenticator
 
-#### create example profile for default user
-cat << 'EOF' > /home/ubuntu/.bash_profile
-export AWS_ACCESS_KEY_ID=""
-export AWS_SECRET_ACCESS_KEY=""
-export AWS_DEFAULT_REGION="us-east-1"
-[ -z "$AWS_ACCESS_KEY_ID" ] && echo "Please export AWS credentials, for example in ~/.bash_profile"
-EOF
-chown ubuntu:ubuntu /home/ubuntu/.bash_profile
-
 #### clone repo
-su -c "git clone https://github.com/pgomersbach/terraform-eks.git" ubuntu
+su -c "git clone https://github.com/pgomersbach/terraform-eks.git terraform-eks" ubuntu
+
+echo "Please export AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_DEFAULT_REGION for example in ~/.bash_profile"
