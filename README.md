@@ -76,4 +76,5 @@ exit
 ```
 
 ### Destroy cluster
-terraform destroy
+```
+terraform destroy # and wait about ten minutes
