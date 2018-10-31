@@ -4,14 +4,17 @@
 ### Prerequisites
 - AWS account  
 - AWS AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY  
+### Install development workstation
 ```
-- boot a new development station  
+- boot a new Ubuntu 18.04 development station  
 - login as ubuntu user  
 - become root  
 - download and run https://raw.githubusercontent.com/pgomersbach/terraform-eks/master/scripts/bootstrap_dev.sh  
 - exit root  
 - export AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_DEFAULT_REGION for example in ~/.bash_profile  
 - cd ~/terraform-eks  
+```
+### Install EKS cluster using Terraform
 ```
 terraform init
 terraform plan
@@ -21,6 +24,7 @@ terraform output config_map_aws_auth > config_map_aws_auth.yaml
 kubectl apply -f config_map_aws_auth.yaml
 kubectl get nodes --watch
 kubectl get pods -n kube-system
+```
 
 kubectl create -f postgres/postgres-configmap.yaml
 kubectl create -f postgres/postgres-storage.yaml
