@@ -23,7 +23,7 @@ pip install awscli
 curl -s  https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip -o terraform_0.11.10_linux_amd64.zip && unzip terraform_0.11.10_linux_amd64.zip && mv terraform /usr/local/bin && rm -f terraform_0.11.10_linux_amd64.zip
 
 #### install aws-iam-authenticator
-curl -s  https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64 -o /usr/local/bin/aws-iam-authenticator && chmod +x /usr/local/bin/aws-iam-authenticator
+curl -s -L  https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64 -o /usr/local/bin/aws-iam-authenticator && chmod +x /usr/local/bin/aws-iam-authenticator
 
 #### clone repo
 su -c "git clone https://github.com/pgomersbach/terraform-eks.git /home/ubuntu/terraform-eks" ubuntu
