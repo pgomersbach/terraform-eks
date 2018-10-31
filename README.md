@@ -20,7 +20,7 @@ This procedure installs an AWS EKS cluster, deploy portsgreql and performs a num
 cd ~/terraform-eks
 terraform init
 terraform plan
-terraform apply
+terraform apply  # and wait about ten minutes
 ```
 ### Authorize kubectl to ECS cluster
 ```
