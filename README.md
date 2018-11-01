@@ -84,6 +84,7 @@ docker login --username=yourhubusername
 docker build -t pgomersbach/my-jenkins-image:1.1 jenkins/
 docker push pgomersbach/my-jenkins-image
 kubectl apply -f jenkins/jenkins-deployment.yaml
+kubectl apply -f jenkins/jenkins-service.yaml
 ```
 
 ### Destroy cluster
