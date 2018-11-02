@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: artifactory-config
+  labels:
+    app: artifactory
+data:
+  DB_TYPE: postgresql
+  DB_USER: artifactory
+  DB_PASSWORD: changeme
+  DB_HOST: postgresql-artifactory
+  DB_PORT: "5432"

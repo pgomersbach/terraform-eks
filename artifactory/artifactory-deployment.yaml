@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: artifactory
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: artifactory
+    spec:
+      containers:
+        - name: artifactory
+          image: pgomersbach/mn-artifactory:latest
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - name: http-port
+              containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: artifactory-config
+          volumeMounts:
+            - name: artifactory-home
+              mountPath: /var/opt/jfrog/artifactory
+      volumes:
+        - name: artifactory-home
+          persistentVolumeClaim:
+            claimName: artifactory-pv-claim
+      initContainers:
+        - name: "grant-permissions"
+          image: "busybox:1.26.2"
+          imagePullPolicy: "IfNotPresent"
+          command:
+            - 'sh'
+            - '-c'
+            - 'chown -R 1030 /var/opt/jfrog/artifactory'
+          volumeMounts:
+            - name: artifactory-home
+              mountPath: /var/opt/jfrog/artifactory

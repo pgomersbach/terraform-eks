@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql-artifactory-config
+  labels:
+    app: postgresql-artifactory
+data:
+  POSTGRES_DB: artifactory
+  POSTGRES_USER: artifactory
+  POSTGRES_PASSWORD: changeme

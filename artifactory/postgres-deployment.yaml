@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgresql-artifactory
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgresql-artifactory
+    spec:
+      containers:
+        - name: postgresql-artifactory
+          image: postgres:10.4
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgresql-artifactory-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb
+          persistentVolumeClaim:
+            claimName: postgresql-artifactory-claim

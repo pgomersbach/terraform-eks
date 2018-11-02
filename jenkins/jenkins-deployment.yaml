@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: jenkins
-          image: pgomersbach/my-jenkins-image:1.1
+          image: pgomersbach/mn-jenkins:latest
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false
