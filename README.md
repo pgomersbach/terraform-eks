@@ -33,6 +33,28 @@ kubectl apply -f config_map_aws_auth.yaml
 kubectl get nodes --watch
 kubectl get pods -n kube-system
 ```
+### Install jenkins
+```
+sudo usermod -aG docker $USER
+exec sg docker newgrp `id -gn`
+docker login --username=yourhubusername
+docker build -t pgomersbach/my-jenkins-image:1.1 jenkins/
+docker push pgomersbach/my-jenkins-image
+kubectl create -f jenkins/jenkins-deployment.yaml
+kubectl create -f jenkins/jenkins-service.yaml
+kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=default:default
+```
+### Install artifactory
+```
+kubectl create -f artifactory/postgres-configmap.yaml
+kubectl create -f artifactory/postgres-storage.yaml
+kubectl create -f artifactory/postgres-deployment.yaml
+kubectl create -f artifactory/postgres-service.yaml
+kubectl create -f artifactory/artifactory-configmap.yaml
+kubectl create -f artifactory/artifactory-storage.yaml
+kubectl create -f artifactory/artifactory-deployment.yaml
+kubectl create -f artifactory/artifactory-service.yaml
+```
 ### Deploy postgres on kubernetes
 ```
 kubectl create -f postgres/postgres-configmap.yaml
@@ -75,28 +97,6 @@ select count(*) from pgbench_accounts;
 \q
 exit
 exit
-```
-### Install jenkins
-```
-sudo usermod -aG docker $USER
-exec sg docker newgrp `id -gn`
-docker login --username=yourhubusername
-docker build -t pgomersbach/my-jenkins-image:1.1 jenkins/
-docker push pgomersbach/my-jenkins-image
-kubectl create -f jenkins/jenkins-deployment.yaml
-kubectl create -f jenkins/jenkins-service.yaml
-kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=default:default
-```
-### Install artifactory
-```
-kubectl create -f artifactory/postgres-configmap.yaml
-kubectl create -f artifactory/postgres-storage.yaml
-kubectl create -f artifactory/postgres-deployment.yaml
-kubectl create -f artifactory/postgres-service.yaml
-kubectl create -f artifactory/artifactory-configmap.yaml
-kubectl create -f artifactory/artifactory-storage.yaml
-kubectl create -f artifactory/artifactory-deployment.yaml
-kubectl create -f artifactory/artifactory-service.yaml
 ```
 ### Destroy cluster
 ```
