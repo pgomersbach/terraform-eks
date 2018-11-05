@@ -83,10 +83,21 @@ exec sg docker newgrp `id -gn`
 docker login --username=yourhubusername
 docker build -t pgomersbach/my-jenkins-image:1.1 jenkins/
 docker push pgomersbach/my-jenkins-image
-kubectl apply -f jenkins/jenkins-deployment.yaml
-kubectl apply -f jenkins/jenkins-service.yaml
+kubectl create -f jenkins/jenkins-deployment.yaml
+kubectl create -f jenkins/jenkins-service.yaml
+kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=default:default
 ```
-
+### Install artifactory
+```
+kubectl create -f artifactory/postgres-configmap.yaml
+kubectl create -f artifactory/postgres-storage.yaml
+kubectl create -f artifactory/postgres-deployment.yaml
+kubectl create -f artifactory/postgres-service.yaml
+kubectl create -f artifactory/artifactory-configmap.yaml
+kubectl create -f artifactory/artifactory-storage.yaml
+kubectl create -f artifactory/artifactory-deployment.yaml
+kubectl create -f artifactory/artifactory-service.yaml
+```
 ### Destroy cluster
 ```
 terraform destroy # and wait about ten minutes
