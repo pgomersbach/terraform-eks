@@ -1,3 +1,0 @@
-#!/bin/bash
-REPO=https://github.com/pgomersbach/test-source.git
-wget https://raw.githubusercontent.com/pgomersbach/terraform-eks/master/scripts/bootstrap_dev.sh && chmod +x bootstrap_dev.sh && ./bootstrap_dev.sh

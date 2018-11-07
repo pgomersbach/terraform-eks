@@ -2,6 +2,7 @@ terraform.tfplan
 terraform.tfstate
 .terraform.tfstate*
 config_map_aws_auth.yaml
+config_map_aws_auth*.yaml
 *.backup
 ./*.tfstate
 .terraform/

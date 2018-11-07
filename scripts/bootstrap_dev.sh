@@ -28,8 +28,4 @@ curl -s -L  https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/do
 #### clone repo
 su -c "git clone https://github.com/pgomersbach/terraform-eks.git /home/ubuntu/terraform-eks" ubuntu
 
-### change to repo dir and init terraform
-cd /home/ubuntu/terraform-eks
-su -c "terraform init" ubuntu
-su -c "terraform plan" ubuntu
 echo "Please export AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_DEFAULT_REGION for example in ~/.bash_profile"

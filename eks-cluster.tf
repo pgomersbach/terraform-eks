@@ -85,3 +85,31 @@ resource "aws_eks_cluster" "demo" {
     "aws_iam_role_policy_attachment.demo-cluster-AmazonEKSServicePolicy",
   ]
 }
+
+resource "null_resource" "authorize" {
+  depends_on = [ "aws_eks_cluster.demo" ]
+  provisioner "local-exec" {
+    command = "aws eks update-kubeconfig --name ${var.cluster-name}",
+  }
+}
+
+data "template_file" "config_map_aws_auth" {
+  template = "${file("${path.module}/templates/config-map-aws-auth.yaml.tpl")}"
+  vars = {
+    rolearn = "${aws_iam_role.demo-node.arn}"
+  }
+}
+
+resource "local_file" "config_map_aws_auth" {
+  depends_on = [ "null_resource.authorize" ]
+  content  = "${data.template_file.config_map_aws_auth.rendered}"
+  filename = "config-map-aws-auth_${var.cluster-name}.yaml"
+}
+
+resource "null_resource" "authorize_nodes" {
+  depends_on = [ "local_file.config_map_aws_auth" ]
+  provisioner "local-exec" {
+    command = "kubectl apply -f config-map-aws-auth_${var.cluster-name}.yaml",
+  }
+}
+
