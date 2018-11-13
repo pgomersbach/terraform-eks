@@ -37,6 +37,7 @@ docker push pgomersbach/my-jenkins-image
 kubectl create -f jenkins/jenkins-deployment.yaml
 kubectl create -f jenkins/jenkins-service.yaml
 kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=default:default
+kubectl get service jenkins
 ```
 ### Install artifactory
 ```
