@@ -39,6 +39,11 @@ kubectl create -f jenkins/jenkins-service.yaml
 kubectl create clusterrolebinding default-admin --clusterrole cluster-admin --serviceaccount=default:default
 kubectl get service jenkins
 ```
+### Destroy jenkins
+```
+kubectl delete -f jenkins/jenkins-deployment.yaml
+kubectl delete -f jenkins/jenkins-service.yaml
+```
 ### Install artifactory
 ```
 kubectl create -f artifactory/postgres-configmap.yaml
