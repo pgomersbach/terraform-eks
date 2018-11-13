@@ -25,6 +25,9 @@ curl -s  https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linu
 #### install aws-iam-authenticator
 curl -s -L  https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64 -o /usr/local/bin/aws-iam-authenticator && chmod +x /usr/local/bin/aws-iam-authenticator
 
+#### install helm
+curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get -o get_helm.sh && chmod +x get_helm.sh && ./get_helm.sh
+
 #### clone repo
 su -c "git clone https://github.com/pgomersbach/terraform-eks.git /home/ubuntu/terraform-eks" ubuntu
 
