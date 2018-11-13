@@ -109,25 +109,25 @@ resource "local_file" "config_map_aws_auth" {
 resource "null_resource" "authorize_nodes" {
   depends_on = [ "local_file.config_map_aws_auth" ]
   provisioner "local-exec" {
-    command = "kubectl apply -f config-map-aws-auth_${var.cluster-name}.yaml",
+    command = "sleep 10 && kubectl apply -f config-map-aws-auth_${var.cluster-name}.yaml",
+  }
+}
+
+resource "null_resource" "init_helm" {
+  depends_on = [ "null_resource.authorize_nodes" ]
+  provisioner "local-exec" {
+    command = "helm init && helm repo update",
   }
 }
 
 resource "null_resource" "authorize_helm" {
-  depends_on = [ "null_resource.authorize_nodes" ]
+  depends_on = [ "null_resource.init_helm" ]
   provisioner "local-exec" {
     command = <<EOT
       kubectl create serviceaccount --namespace kube-system tiller
       kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
       kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
     EOT
-  }
-}
-
-resource "null_resource" "init_helm" {
-  depends_on = [ "null_resource.authorize_helm" ]
-  provisioner "local-exec" {
-    command = "helm init && helm repo update",
   }
 }
 
