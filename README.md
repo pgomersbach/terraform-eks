@@ -98,6 +98,12 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
+### install pipeline using helm
+```
+kubectl create -f helm/jenkins-namespace.yaml
+kubectl create -f helm/jenkins-volume.yaml
+helm install stable/jenkins -f helm/jenkins-values.yaml
+```
 ### Destroy cluster
 ```
 terraform destroy # and wait about ten minutes
