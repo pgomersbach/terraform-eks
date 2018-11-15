@@ -98,11 +98,12 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
-### install pipeline using helm
+### install jenkins and pipeline using helm
 ```
 kubectl create -f helm/jenkins-namespace.yaml
 kubectl create -f helm/jenkins-volume.yaml
 helm install stable/jenkins -f helm/jenkins-values.yaml
+jenkins-jobs --conf jobs/jenkins_jobs.ini update jobs/jobtest.yaml
 ```
 ### Destroy cluster
 ```
