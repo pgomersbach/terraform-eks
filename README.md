@@ -102,7 +102,7 @@ exit
 ```
 kubectl create -f helm/jenkins-namespace.yaml
 kubectl create -f helm/jenkins-volume.yaml
-helm install stable/jenkins -f helm/jenkins-values.yaml
+helm install stable/jenkins -f helm/jenkins-values.yaml --wait --name jenkins-master
 jenkins-jobs --conf jobs/jenkins_jobs.ini update jobs/jobtest.yaml
 ```
 ### Destroy cluster
