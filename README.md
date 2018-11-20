@@ -102,8 +102,11 @@ exit
 ```
 kubectl create -f helm/jenkins-namespace.yaml
 kubectl create -f helm/jenkins-volume.yaml
-helm install stable/jenkins -f helm/jenkins-values.yaml --wait --name jenkins-master
-jenkins-jobs --conf jobs/jenkins_jobs.ini update jobs/jobtest.yaml
+helm install stable/jenkins -f helm/jenkins-values.yaml -f helm/jenkins-jobs.yaml --wait --name jenkins-master --timeout 600
+JENKINS_USER=$(kubectl get secret --namespace default jenkins-master -o jsonpath="{.data.jenkins-admin-user}" | base64 --decode)
+JENKINS_PASS=$(kubectl get secret --namespace default jenkins-master -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode)
+JENKINS_IP=$(kubectl get svc --namespace default jenkins-master --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+JENKINS_PORT=$(kubectl get svc --namespace default jenkins-master --output jsonpath={.spec.ports[*].port})
 ```
 ### Destroy cluster
 ```

@@ -11,14 +11,14 @@
 Master:
   Name: jenkins-master
   Image: "jenkins/jenkins"
-  ImageTag: "2.151"
-  ImagePullPolicy: "Always"
+  ImageTag: "2.152"
+  ImagePullPolicy: "IfNotPresent"
   Component: "jenkins-master"
   UseSecurity: true
   AdminUser: admin
   # AdminPassword: <defaults to random>
-  Cpu: "400m"
-  Memory: "512Mi"
+  Cpu: "1000m"
+  Memory: "1024Mi"
   ServicePort: 8080
   # For minikube, set this to NodePort, elsewhere use LoadBalancer
   # <to set explicitly, choose port between 30000-32767>
