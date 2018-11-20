@@ -1,0 +1,38 @@
+Master:
+  Jobs:
+    first-job: |-
+      <?xml version='1.1' encoding='UTF-8'?>
+      <flow-definition plugin="workflow-job@2.29">
+        <actions/>
+        <description>&lt;!-- Managed by Jenkins Job Builder --&gt;</description>
+        <keepDependencies>false</keepDependencies>
+        <properties>
+          <org.jenkinsci.plugins.workflow.job.properties.DisableConcurrentBuildsJobProperty/>
+        </properties>
+        <definition class="org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition" plugin="workflow-cps@2.60">
+          <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.1">
+            <configVersion>2</configVersion>
+            <userRemoteConfigs>
+              <hudson.plugins.git.UserRemoteConfig>
+                <name>origin</name>
+                <refspec>+refs/heads/*:refs/remotes/origin/*</refspec>
+                <url>https://github.com/pgomersbach/test-source.git</url>
+              </hudson.plugins.git.UserRemoteConfig>
+            </userRemoteConfigs>
+            <branches>
+              <hudson.plugins.git.BranchSpec>
+                <name>**</name>
+              </hudson.plugins.git.BranchSpec>
+            </branches>
+            <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+            <gitTool>Default</gitTool>
+            <submoduleCfg class="list"/>
+            <extensions>
+              <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+            </extensions>
+          </scm>
+          <scriptPath>Jenkinsfile</scriptPath>
+          <lightweight>false</lightweight>
+        </definition>
+        <disabled>false</disabled>
+      </flow-definition>
