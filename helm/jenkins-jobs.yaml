@@ -4,7 +4,7 @@ Master:
       <?xml version='1.1' encoding='UTF-8'?>
       <flow-definition plugin="workflow-job@2.29">
         <actions/>
-        <description>&lt;!-- Managed by Jenkins Job Builder --&gt;</description>
+        <description>&lt;!-- Managed by Helm do not edit --&gt;</description>
         <keepDependencies>false</keepDependencies>
         <properties>
           <org.jenkinsci.plugins.workflow.job.properties.DisableConcurrentBuildsJobProperty/>
