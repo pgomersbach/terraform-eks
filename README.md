@@ -108,6 +108,10 @@ JENKINS_PASS=$(kubectl get secret --namespace default jenkins-master -o jsonpath
 JENKINS_IP=$(kubectl get svc --namespace default jenkins-master --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
 JENKINS_PORT=$(kubectl get svc --namespace default jenkins-master --output jsonpath={.spec.ports[*].port})
 ```
+### Destroy jenkins 
+```
+helm delete --purge jenkins-master
+```
 ### Destroy cluster
 ```
 terraform destroy # and wait about ten minutes
