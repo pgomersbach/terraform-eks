@@ -98,7 +98,7 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
-### install jenkins and pipeline using helm
+### install jenkins, pipeline job and artifactory using helm
 ```
 kubectl create -f helm/jenkins-namespace.yaml
 kubectl create -f helm/jenkins-volume.yaml
@@ -107,6 +107,7 @@ JENKINS_USER=$(kubectl get secret --namespace default jenkins-master -o jsonpath
 JENKINS_PASS=$(kubectl get secret --namespace default jenkins-master -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode)
 JENKINS_IP=$(kubectl get svc --namespace default jenkins-master --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
 JENKINS_PORT=$(kubectl get svc --namespace default jenkins-master --output jsonpath={.spec.ports[*].port})
+helm install jfrog/artifactory --name artifactory
 ```
 ### Destroy jenkins 
 ```
