@@ -28,6 +28,9 @@ curl -s -L  https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/do
 #### install helm
 curl -s https://raw.githubusercontent.com/helm/helm/master/scripts/get -o get_helm.sh && chmod +x get_helm.sh && ./get_helm.sh
 
+#### install kompose
+curl -s -L https://github.com/kubernetes/kompose/releases/download/v1.17.0/kompose-linux-amd64 -o /usr/local/bin/kompose && chmod +x /usr/local/bin/kompose
+
 #### clone repo
 su -c "git clone https://github.com/pgomersbach/terraform-eks.git /home/ubuntu/terraform-eks" ubuntu
 
