@@ -1,0 +1,7 @@
+name: xl-deploy
+description: A generated Helm Chart for xl-deploy from Skippbox Kompose
+version: 0.0.1
+keywords:
+  - xl-deploy
+sources:
+home:

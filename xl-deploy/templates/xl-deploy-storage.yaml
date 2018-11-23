@@ -1,0 +1,191 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: xl-deploy-vol0
+  labels:
+    type: local
+    app: xl-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/xl-deploy-conf"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy-conf
+    app: xl-deploy
+  name: xl-deploy-conf
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: xl-deploy-vol1
+  labels:
+    type: local
+    app: xl-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/xl-deploy-ext"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy-ext
+    app: xl-deploy
+  name: xl-deploy-ext
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: xl-deploy-vol2
+  labels:
+    type: local
+    app: xl-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/xl-deploy-hflib"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy-hflib
+    app: xl-deploy
+  name: xl-deploy-hflib
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: xl-deploy-vol3
+  labels:
+    type: local
+    app: xl-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/xl-deploy-hfplugins"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy-hplugins
+    app: xl-deploy
+  name: xl-deploy-hfplugins
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: xl-deploy-vol4
+  labels:
+    type: local
+    app: xl-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/xl-deploy-plugins"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy-plugins
+    app: xl-deploy
+  name: xl-deploy-plugins
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: xl-deploy-vol5
+  labels:
+    type: local
+    app: xl-deploy
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/xl-deploy-repository"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy-repository
+    app: xl-deploy
+  name: xl-deploy-repository
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f xl-deploy.yaml -c
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy
+  name: xl-deploy
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: xl-deploy
+    spec:
+      containers:
+      - env:
+        - name: ADMIN_PASSWORD
+          value: admin
+        image: xebialabs/xl-deploy:8.1
+        name: xl-deploy
+        ports:
+        - containerPort: 4516
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/xl-deploy-server/conf
+          name: xl-deploy-conf
+        - mountPath: /opt/xl-deploy-server/ext
+          name: xl-deploy-ext
+        - mountPath: /opt/xl-deploy-server/hotfix/lib
+          name: xl-deploy-hflib
+        - mountPath: /opt/xl-deploy-server/hotfix/plugins
+          name: xl-deploy-hfplugins
+        - mountPath: /opt/xl-deploy-server/plugins
+          name: xl-deploy-plugins
+        - mountPath: /opt/xl-deploy-server/repository
+          name: xl-deploy-repository
+      restartPolicy: Always
+      volumes:
+      - name: xl-deploy-conf
+        persistentVolumeClaim:
+          claimName: xl-deploy-conf
+      - name: xl-deploy-ext
+        persistentVolumeClaim:
+          claimName: xl-deploy-ext
+      - name: xl-deploy-hflib
+        persistentVolumeClaim:
+          claimName: xl-deploy-hflib
+      - name: xl-deploy-hfplugins
+        persistentVolumeClaim:
+          claimName: xl-deploy-hfplugins
+      - name: xl-deploy-plugins
+        persistentVolumeClaim:
+          claimName: xl-deploy-plugins
+      - name: xl-deploy-repository
+        persistentVolumeClaim:
+          claimName: xl-deploy-repository
+status: {}

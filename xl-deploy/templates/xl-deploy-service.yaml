@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f xl-deploy.yaml -c
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: xl-deploy
+  name: xl-deploy
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "4516"
+    port: 4516
+    targetPort: 4516
+  selector:
+    io.kompose.service: xl-deploy
+status:
+  loadBalancer: {}
