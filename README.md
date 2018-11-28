@@ -123,8 +123,8 @@ JENKINS_IP=$(kubectl get svc --namespace jenkins-project jenkins-master --templa
 JENKINS_PORT=$(kubectl get svc --namespace jenkins-project jenkins-master --output jsonpath={.spec.ports[*].port})
 echo "${JENKINS_USER} ${JENKINS_PASS} http://${JENKINS_IP}:${JENKINS_PORT}"
 ```
-# install artifactory
-'''
+# install artifactory using helm
+```
 helm search artifactory
 helm inspect values jfrog/artifactory
 helm inspect values jfrog/artifactory > values.yaml
@@ -135,7 +135,7 @@ helm inspect values jfrog/artifactory > values.yaml
 # nginx:  enabled: false
 
 helm install jfrog/artifactory -f values.yaml --name my-artifactory --namespace jenkins-project
-'''
+```
 ### Destroy jenkins and artifactory
 ```
 helm delete --purge artifactory
