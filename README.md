@@ -98,8 +98,8 @@ select count(*) from pgbench_accounts;
 exit
 exit
 ```
-## install jenkins, pipeline job using helm
-# create namespace and volume
+# install jenkins, pipeline job using helm
+## create namespace and volume
 ```
 kubectl create -f helm/jenkins-namespace.yaml
 kubectl create -f helm/jenkins-volume.yaml
@@ -107,7 +107,7 @@ kubectl create -f helm/jenkins-volume.yaml
 kubectl get namespace
 kubectl get pv
 ```
-# install jenkins
+## install jenkins
 ```
 helm install stable/jenkins -f helm/jenkins-values.yaml -f helm/jenkins-jobs.yaml --wait --name jenkins-master --namespace jenkins-project --timeout 600
 
@@ -115,7 +115,7 @@ helm ls --all
 kubectl get pods --namespace=jenkins-project
 kubectl --namespace=jenkins-project describe pod xxx
 ```
-# get jenkins credentials
+## get jenkins credentials
 ```
 JENKINS_USER=$(kubectl get secret --namespace jenkins-project jenkins-master -o jsonpath="{.data.jenkins-admin-user}" | base64 --decode)
 JENKINS_PASS=$(kubectl get secret --namespace jenkins-project jenkins-master -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode)
@@ -123,7 +123,7 @@ JENKINS_IP=$(kubectl get svc --namespace jenkins-project jenkins-master --templa
 JENKINS_PORT=$(kubectl get svc --namespace jenkins-project jenkins-master --output jsonpath={.spec.ports[*].port})
 echo "${JENKINS_USER} ${JENKINS_PASS} http://${JENKINS_IP}:${JENKINS_PORT}"
 ```
-# install artifactory using helm
+## install artifactory using helm
 ```
 helm search artifactory
 helm inspect values jfrog/artifactory
@@ -136,7 +136,7 @@ helm inspect values jfrog/artifactory > values.yaml
 
 helm install jfrog/artifactory -f values.yaml --name my-artifactory --namespace jenkins-project
 ```
-### Destroy jenkins and artifactory
+# Destroy jenkins and artifactory
 ```
 helm delete --purge artifactory
 helm delete --purge jenkins-master
