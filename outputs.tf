@@ -57,3 +57,7 @@ output "config_map_aws_auth" {
 output "kubeconfig" {
   value = "${local.kubeconfig}"
 }
+
+output "jenkins" {
+  value = "${var.install_jenkins != 0 ? "Jenkins is provisioned on cluster ${var.cluster-name}, please check status using: kubectl get pods --namespace=jenkins-project" : ""}"
+}

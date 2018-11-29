@@ -116,7 +116,7 @@ resource "null_resource" "authorize_nodes" {
 resource "null_resource" "init_helm" {
   depends_on = [ "null_resource.authorize_nodes" ]
   provisioner "local-exec" {
-    command = "helm init && helm repo add jfrog https://charts.jfrog.io && helm repo update",
+    command = "helm init --wait && helm repo add jfrog https://charts.jfrog.io && helm repo update",
   }
 }
 
